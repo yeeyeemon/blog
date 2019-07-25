@@ -60,3 +60,6 @@ Route::resource('events','EventController');
 // Route::resource('invitations','InvitationController');
 Route::get('invitations/{invitation_id}','InvitationController@send')->name('invitations.mailsend');
 Route::get('invitations/{invitation_id}/{action}','AcceptController@accept')->name('invitations.send');
+
+//pages
+Route::resource('/pages','PageController');

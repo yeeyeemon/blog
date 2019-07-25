@@ -12,6 +12,10 @@ class Post extends Model
         return $this->belongsTo('App\Post');
     }
 
+    public function page(){
+        return $this->belongsTo('App\Page');
+    }
+
     public function user(){
         return $this->belongsTo('App\User');
     }

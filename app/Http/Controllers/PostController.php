@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
+    public function __construct(){
+         $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +23,10 @@ class PostController extends Controller
      */
     public function index()
     {   
+
         $popular_posts=Post::where('viewer_count','>',3);
-        
-        $posts=Post::paginate(2);
+        $user_id=Auth::user()->id;
+        $posts=Post::where('user_id',$user_id)->paginate(2);
         return view('posts.index',compact('posts','popular_posts'));
     }
 

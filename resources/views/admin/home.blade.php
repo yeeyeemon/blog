@@ -1,23 +1,51 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Admin Dashboard</div>
+<div class="row">
+    <div class="col-md-10"> 
+        <h1>All Posts</h1>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    This is Admin Dashboard. You must be privileged to be here !
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="{{route('posts.create')}}" class="btn btn-primary btn-block btn-lg">Create Post</a>
+    </div>
+    <div class="col-md-12">
+        <hr>
     </div>
 </div>
+
+<div class="row">
+
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>Post Owner</th>
+                    <th>created-At</th>
+                    <th>Option</th>
+                </thead>
+                <tbody>
+                    @foreach($posts as $post)
+                    <tr>
+                        <td>{{$post->id}}</td>
+                        <td>{{$post->title}}</td>
+                        <td>{{substr($post->body,0,50)}}{{strlen($post->body)>50 ? "....." :""}}</td>
+                        <td>{{$post->user['name']}}</td>
+                        <td>{{date('M j Y', strtotime($post->created_at))}}</td>
+                        <td><a href="{{route('posts.show',$post->id)}}" class="btn btn-success">View</a><a href="{{route('posts.edit',$post->id)}}" class="btn btn-success">Edit</a></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+           
+        </div>
+</div>
+<div class="row my-4">
+    <div class="col-sm-6 col-sm-offset-5">
+        {{$posts->render()}}
+    </div>
+</div>
+
+
 @endsection

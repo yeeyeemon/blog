@@ -4,3 +4,20 @@
 .margin-bottom{
     margin-bottom: 20px;
 }
+.margin-top{
+    margin-top:15px;
+}
+
+.margin-left{
+margin-left: 20px;
+}
+
+.font-size-20-px{
+    font-size: 20px;
+}
+.font-size-12-px{
+    font-size: 12px;
+}
+.float-right{
+    float: right;
+}
