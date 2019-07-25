@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 Pages
-                <button class="btn btn-primary float-right font-size-12-px">Add New Page</button>
+                <a href="{{route('pages.create')}}"><button class="btn btn-primary float-right font-size-12-px">Add New Page</button></a>
             </div>
             <ul class="list-group list-group-flush">
                 @foreach($pages as $page)
