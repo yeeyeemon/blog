@@ -123,11 +123,11 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="{{route('pages.index')}}">Pages</a>
           <a class="dropdown-item" href="register.html">Post</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+          <a class="dropdown-item" href="{{route('invitations.index')}}">Invitations</a>
           <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
+          <h6 class="dropdown-header"></h6>
+          <a class="dropdown-item" href="404.html"></a>
+          <a class="dropdown-item" href="blank.html"></a>
         </div>
       </li>
       <li class="nav-item">

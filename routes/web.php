@@ -58,6 +58,8 @@ Route::post('comments/{post_id}',['uses'=>'CommentsController@store','as'=>'comm
 Route::resource('events','EventController');
 //invitations
 // Route::resource('invitations','InvitationController');
+Route::get('/invitations','InvitationController@index')->name('invitations.index');
+Route::post('/invitations/create','InvitationController@create')->name('invitations.create');
 Route::get('invitations/{invitation_id}','InvitationController@send')->name('invitations.mailsend');
 Route::get('invitations/{invitation_id}/{action}','AcceptController@accept')->name('invitations.send');
 
