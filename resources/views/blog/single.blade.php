@@ -8,9 +8,7 @@
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			@if(!empty($post->images))
-				<img src="{{asset('/images/' . $post->images)}}" width="400" height="200" />
-			@endif
+			
 			<h1>{{ $post->title }}</h1>
 			<p>{!! $post->body !!}</p>
 			<hr>

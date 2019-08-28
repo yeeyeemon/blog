@@ -78,7 +78,7 @@ class PostController extends Controller
         $post=new Post();
         request()->validate([
 
-            'featured_image' => 'required|image|mimes:mp4,png,jpg,gif,svg',
+            'featured_image' => 'required',
             'title'=>'required',
             'slug'=>'required|alpha_dash|min:5|max:255',
             'body'=>'required'
@@ -158,26 +158,29 @@ class PostController extends Controller
     // }
 
     public function update(Request $request,$id)
-{
-    $post = Post::find($id);
-    $post->title=$request->input('title');
-
-     $post->body=$request->input('body');
-    if($request->hasFile('featured_image'))
     {
-        $usersImage = public_path("images/{$post->images}"); // get previous image from folder
-        if (File::exists($usersImage)) { // unlink or remove previous image from folder
-            unlink($usersImage);
+
+        $post = Post::find($id);
+        $post->title=$request->input('title');
+
+        $post->body=$request->input('body');
+
+        if($request->has('hidden_image'))
+        {
+            $usersImage = public_path("images/{$post->images}"); // get previous image from folder
+            if (File::exists($usersImage)) { // unlink or remove previous image from folder
+                unlink($usersImage);
+            }
+            $file = $request->file('featured_image');
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name); 
+            $post->images= $name;
         }
-        $file = $request->file('featured_image');
-        $name = time() . '-' . $file->getClientOriginalName();
-        $file->move(public_path().'/images/', $name); 
-        $post->images= $name;
+
+        $post->save();
+        // return response()->json($post);
+        return redirect()->route('posts.show',$post->id);
     }
-    $post->save();
-    return response()->json($post);
-    // return redirect()->route('posts.show',$post->id);
-}
 
     /**
      * Remove the specified resource from storage.
@@ -193,3 +196,4 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 }
+
